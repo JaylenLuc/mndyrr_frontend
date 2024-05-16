@@ -26,6 +26,7 @@
     overflow: scroll;
     display: flex;
     flex-direction: column-reverse;
+    overflow-x: hidden;
 }
 
 .cookiesbox{
