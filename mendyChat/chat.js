@@ -261,11 +261,17 @@ export default function Chat() {
   // };
 
   useEffect(() => {
+    let localstore_item = window.localStorage.getItem("MENDY_CONSENT")
+    if(localstore_item == "true"){
+      setCookieComponent(null)
+      sendJWT()
+
+    }
     // now access your localStorage
     const handleBeforeUnload = (event) => {
       if(typeof window !== 'undefined' && window.localStorage){
         event.preventDefault();
-        window.localStorage.removeItem("MENDY_CONSENT") //for testing only maybe if session exists then it persists
+        //window.localStorage.removeItem("MENDY_CONSENT") //for testing only maybe if session exists then it persists
         //window.localStorage.removeItem("MENDY_SESSION")
       }
     }

@@ -39,6 +39,7 @@
         /* box-shadow: 5px 10px black; */
         border-radius: 25px;
         /* display: flex; */
+        z-index:9999;
         background-color: #E4D3FF;
         z-index:1;
         font-family: 'Lato', sans-serif;
@@ -61,7 +62,7 @@
         background-color: #E4D3FF;
 
         font-family: 'Lato', sans-serif;
-
+        z-index:9999;
         font-size:xx-small;
     }
 
@@ -69,7 +70,7 @@
 
 .humanChat{
     position : relative;
-    z-index: 9999;
+    z-index: 5;
     outline-style: solid;
     outline-color: white;
     outline-width: 2px;
