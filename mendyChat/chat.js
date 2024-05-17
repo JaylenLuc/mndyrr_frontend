@@ -279,7 +279,7 @@ export default function Chat() {
       //unmount code
       window.removeEventListener('beforeunload', handleBeforeUnload)
     }
-  },[init_chat_hist]);
+  },[init_chat_hist,cookiepopup]);
 
 
   return (
