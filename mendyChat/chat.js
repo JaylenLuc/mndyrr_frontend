@@ -7,6 +7,7 @@ import RealSearchBar from "../components/real_input_comp"
 import axios from 'axios';
 import { useEffect } from 'react';
 import {HmacSHA256, enc} from 'crypto-js'
+import { animate, motion, useAnimate, useForceUpdate } from "framer-motion"
 /*Thank you for using our website, https://mndyrr.ai and interacting with our AI chatbot, Mendy™. We take your privacy seriously, and we want you to understand how we collect, use, and protect your personal information.
 Our AI chatbot is designed to provide general information and support on various topics related to your overall well-being. However, please note that the information provided by the chatbot is not intended to be a substitute for professional medical advice, diagnosis, or treatment. The chatbot is not designed to provide medical, medication, or diagnostic advice, and you should not rely on the information provided by the chatbot as a substitute for professional advice.
 Please be aware that the chatbot is an automated system, and it may not always provide 100% accurate information. While we strive to provide accurate information, we cannot guarantee the accuracy, completeness, or timeliness of the information provided by the chatbot, but it will produce better answers as a learning bot.
@@ -43,7 +44,26 @@ By using our website and interacting with our chatbot, you agree to the terms of
     )
 }
 
-const ChatBubbles = ({init_chat_hist}) => Object.entries(init_chat_hist).map(entry => (
+const ChatBubbles = ({init_chat_hist}) => {
+  
+    const [scope, animate] = useAnimate()
+    return Object.entries(init_chat_hist).map(entry => (
+      
+      <motion.div
+      ref={scope}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={ { opacity: 1, scale: 1}}
+      transition={{
+        duration: 2.2,
+        ease: [0, 1, 0.3, 1.01],
+        scale: {
+          type: "spring",
+          damping: 5,
+          stiffness: 80,
+          restDelta: 0.001
+        }
+      }}
+       >
         <div key={entry[0]}>
           <span className = {styles.date}>{entry[0].split("-")[1]}/{entry[0].split("-")[2]}/{entry[0].split("-")[0]} {entry[0].split("-")[3].length == 1 ? "0" + entry[0].split("-")[3] : entry[0].split("-")[3]} : {entry[0].split("-")[4].length == 1 ? "0" + entry[0].split("-")[4] : entry[0].split("-")[4]}</span>
           <br></br>
@@ -62,8 +82,9 @@ const ChatBubbles = ({init_chat_hist}) => Object.entries(init_chat_hist).map(ent
           </div>
           <br></br>
         </div>
+      </motion.div>
       ));
-
+    }
 
 
 export default function Chat() {
@@ -253,7 +274,7 @@ export default function Chat() {
   return (
 
 
-    <div>
+    <div className = {styles.backdrop}>
       <Head>
         <title>Chat</title>
         <link rel="icon" href="/favicon.ico" />

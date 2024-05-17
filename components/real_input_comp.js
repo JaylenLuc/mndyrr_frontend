@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { animate, motion, useAnimate, useForceUpdate } from "framer-motion"
 const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setBtnDisabled}) => {
   const [scope, animate] = useAnimate()
-  const stars_num = 25
+  const stars_num = 15
   const stars = Array.from({length: stars_num});    
   const randomNumber = (max , min ) => {
     return Math.floor(Math. random() * (max - min + 1) + min)
@@ -14,9 +14,9 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
   const stars_animation = stars.map((_, index)=> [
     `.sparkle-${index}`,
     {
-      x : randomNumber(-100,100),
-      y : randomNumber(-50,50),
-      scale : randomNumber(0.2,4),
+      x : randomNumber(-50,50),
+      y : randomNumber(-30,30),
+      scale : randomNumber(2,6),
       opacity : 1,
 
     }, 
@@ -114,7 +114,9 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
   // onChange={(text) => setBtnDisabled(!text.target.value)}
   
     
-    <form style={{zIndex : 100}} className={styles.querybar}>
+    <form style={{zIndex : 100}} className={styles.querybar}
+
+    >
       <textarea id = "search" className={styles.textBar}
             role="textbox" 
             onInput={(e) => {
@@ -129,6 +131,18 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
         <motion.div
         ref={scope}
         onTap={animateStars}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={ { opacity: 1, scale: 1}}
+        transition={{
+          duration: 2.2,
+          ease: [0, 1, 0.3, 1.01],
+          scale: {
+            type: "spring",
+            damping: 5,
+            stiffness: 80,
+            restDelta: 0.001
+          }
+        }}
         >
           <Button className = {styles.textButton} onTap variant="contained" disabled={btnDisabled} onClick={() => {
                 if (!btnDisabled){
@@ -149,9 +163,9 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
                 // className='absolute inset-0 opacity-0 -z-100 pointer-events-none'
               >
                 {Array.from({length: stars_num}).map((_,index) => (
-                  <svg  key= {index} viewBox="0 0 122 117" width="15" height="10" className={`absolute  opacity-0 left-1/2 top-1/4 sparkle-${index}`}>
+                  <svg  key= {index} viewBox="0 0 122 117" width="5" height="5" className={`absolute  opacity-0 left-1/2 top-1/4 sparkle-${index}`}>
                       <path
-                        fill=	"#FFE078"
+                        fill=	"#A7C7E7"
                         d="M64.39,2,80.11,38.76,120,42.33a3.2,3.2,0,0,1,1.83,5.59h0L91.64,74.25l8.92,39a3.2,3.2,0,0,1-4.87,3.4L61.44,96.19,27.09,
                         116.73a3.2,3.2,0,0,1-4.76-3.46h0l8.92-39L1.09,47.92A3.2,3.2,0,0,1,3,42.32l39.74-3.56L58.49,2a3.2,3.2,0,0,1,5.9,0Z"
                       />

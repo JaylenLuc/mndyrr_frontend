@@ -38,13 +38,13 @@
 
 .textButton{
     left: 25px;
-    border-radius: 100px;
+    border-radius: 25px;
     background: linear-gradient(-135deg, #FAC898, #eddfff, #ffdbf7, #ffdbe5, #ffdbf7, #eddfff);
     background-size: 150% 150%;
     animation: gradient 3s ease infinite;
-    color: black;
+    background-color: black;
     width: 5vw;
-    height: 5vw;
+    height: 5vh;
     text-align: center;
 
 }

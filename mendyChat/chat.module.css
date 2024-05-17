@@ -16,8 +16,8 @@
     /* padding: 20px; */
     /* box-shadow: 5px 10px black; */
     border-radius: 25px;
-    width: 100%;
-    height: 85vh;
+    width: 90%;
+    height: 80vh;
     margin: auto;
     z-index: -1;
     background: linear-gradient(-45deg,  #C1E1C1,#f8cfa8, #eddfff, #ffdbf7, #ffdbe5, #ffdbf7, #eddfff,#FFFAA0);
@@ -28,22 +28,44 @@
     flex-direction: column-reverse;
     overflow-x: hidden;
 }
+@media (min-width: 751px) {
+    .cookiesbox{
+        position: absolute;
+        padding: 20px;
+        margin : auto;
+        top : 15%;
+        left: 20%;
+        right : 20%;
+        /* box-shadow: 5px 10px black; */
+        border-radius: 25px;
+        display: flex;
+        background-color: #E4D3FF;
+        z-index:1;
+        font-family: 'Lato', sans-serif;
+        justify-content: center;
+        align-items: center;
+        font-size: small;
+    }
+}
+@media (max-width: 750px) {
+    .cookiesbox{
+        position: absolute;
+        padding: 20px;
+        margin : auto;
+        top : 5%;
+        left: 20%;
+        right : 20%;
+        /* box-shadow: 5px 10px black; */
+        border-radius: 25px;
+        display: flex;
+        background-color: #E4D3FF;
+        z-index:1;
+        font-family: 'Lato', sans-serif;
+        justify-content: center;
+        align-items: center;
+        font-size:xx-small;
+    }
 
-.cookiesbox{
-    position: absolute;
-    padding: 20px;
-    margin : auto;
-    top : 25%;
-    left: 20%;
-    right : 20%;
-    /* box-shadow: 5px 10px black; */
-    border-radius: 25px;
-    display: flex;
-    background-color: #E4D3FF;
-    z-index:1;
-    font-family: 'Lato', sans-serif;
-    justify-content: center;
-    align-items: center;
 }
 
 .humanChat{
@@ -85,5 +107,7 @@
     font-family: 'Lato', sans-serif;
 }
 
-
+.backdrop {
+    padding-top: 3%;
+}
 
