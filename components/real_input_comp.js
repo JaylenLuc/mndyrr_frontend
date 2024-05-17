@@ -163,8 +163,9 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
                 // className='absolute inset-0 opacity-0 -z-100 pointer-events-none'
               >
                 {Array.from({length: stars_num}).map((_,index) => (
-                  <svg  key= {index} viewBox="0 0 122 117" width="5" height="5" className={`absolute  opacity-0 left-1/2 top-1/4 sparkle-${index}`}>
+                  <svg  key= {index} viewBox="0 0 122 117" width="5" height="5" className={`sparkle-${index}`}>
                       <path
+                        
                         fill=	"#A7C7E7"
                         d="M64.39,2,80.11,38.76,120,42.33a3.2,3.2,0,0,1,1.83,5.59h0L91.64,74.25l8.92,39a3.2,3.2,0,0,1-4.87,3.4L61.44,96.19,27.09,
                         116.73a3.2,3.2,0,0,1-4.76-3.46h0l8.92-39L1.09,47.92A3.2,3.2,0,0,1,3,42.32l39.74-3.56L58.49,2a3.2,3.2,0,0,1,5.9,0Z"

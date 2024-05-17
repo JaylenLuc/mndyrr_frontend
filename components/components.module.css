@@ -35,7 +35,9 @@
     resize: none;
     font-size: medium;
 }
-
+.starid{
+    opacity: 0;
+}
 .textButton{
     left: 25px;
     border-radius: 25px;
