@@ -11,6 +11,16 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
     return Math.floor(Math. random() * (max - min + 1) + min)
   }
 
+  const stars_opacity = stars.map((_, index)=> [
+    `.sparkle-${index}`,
+    {
+      opacity : 0,
+
+    }, 
+    {
+      at: "<"
+    }
+  ])
   const stars_animation = stars.map((_, index)=> [
     `.sparkle-${index}`,
     {
@@ -53,7 +63,8 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
 
   useEffect(() => {
     // Update the document title using the browser API
-    animate([...stars_animation_reset, ...stars_animation, ...stars_animation_fade_out])
+    //animate([...stars_animation_reset, ...stars_animation, ...stars_animation_fade_out])
+    animate([...stars_opacity])
     // animate(scope.current, 
     //   {
     //       scale: 0.7,
@@ -90,7 +101,7 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
   const animatebounce = () => {
     animate(scope.current, 
       {
-          scale: 0.7,
+          scale: 0.8,
           
       },
 
