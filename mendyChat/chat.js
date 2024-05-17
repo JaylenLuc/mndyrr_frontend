@@ -17,29 +17,40 @@ By using our website and interacting with our chatbot, you agree to the terms of
 */
 /* <div class="buttonContainer"></div> */
 function CookiesComponent ({giveCookieConsent}) {
+  const [scope, animate] = useAnimate()
     return (
-      <div className = {styles.cookiesbox}>
-        <form>
-            <p>
-            Thank you for using our website, <a href="https://mndyrr.ai">https://mndyrr.ai</a> and interacting with our AI chatbot, Mendy™. We take your privacy seriously, and we want you to understand how we collect, use, and protect your personal information.
-            Our AI chatbot is designed to provide general information and support on various topics related to your overall well-being. However, please note that the information provided by the chatbot is not intended to be a substitute for professional medical advice, diagnosis, or treatment. The chatbot is not designed to provide medical, medication, or diagnostic advice, and you should not rely on the information provided by the chatbot as a substitute for professional advice.
-            <br></br><br></br>
-            Please be aware that the chatbot is an automated system, and it may not always provide 100% accurate information. While we strive to provide accurate information, we cannot guarantee the accuracy, completeness, or timeliness of the information provided by the chatbot, but it will produce better answers as a learning bot.
-            It is important to note that MNDYRR [mender] Technologies, Inc. is a lived experience organization, and we do not currently provide any professional services or help if people are in a crisis or have an urgent inquiry. If you require immediate assistance or are experiencing a crisis, please seek professional medical assistance or contact a mental health crisis hotline in your area.
-            <br></br><br></br>We may collect personal information, such as your name, number, email address, and location when you interact with our chatbot. We will only use this information for the purposes of providing support and responding to your inquiries. We will not share your personal information with third parties unless we have your consent or are required by law to do so.
-By using our website and interacting with our chatbot, you agree to the terms of this Privacy Notice and Disclaimer. If you have any questions or concerns about our privacy practices, please contact us at info@mndyrr.com
-            </p>
-        </form>
-        <div>
-                      
-          <Button size="medium" onClick = {() => giveCookieConsent(true)}>
-              Accept
-          </Button>
-          <Button size="medium" onClick = {() => giveCookieConsent(false)}>
-            Decline
-          </Button>
+      <motion.div
+        ref={scope}
+        initial={{ opacity: 0 }}
+        animate={ { opacity: 1}}
+        transition={{
+          duration: 1
+          }
+        }
+      >
+        <div className = {styles.cookiesbox}>
+          <form>
+              <p>
+              Thank you for using our website, <a href="https://mndyrr.ai">https://mndyrr.ai</a> and interacting with our AI chatbot, Mendy™. We take your privacy seriously, and we want you to understand how we collect, use, and protect your personal information.
+              Our AI chatbot is designed to provide general information and support on various topics related to your overall well-being. However, please note that the information provided by the chatbot is not intended to be a substitute for professional medical advice, diagnosis, or treatment. The chatbot is not designed to provide medical, medication, or diagnostic advice, and you should not rely on the information provided by the chatbot as a substitute for professional advice.
+              <br></br><br></br>
+              Please be aware that the chatbot is an automated system, and it may not always provide 100% accurate information. While we strive to provide accurate information, we cannot guarantee the accuracy, completeness, or timeliness of the information provided by the chatbot, but it will produce better answers as a learning bot.
+              It is important to note that MNDYRR [mender] Technologies, Inc. is a lived experience organization, and we do not currently provide any professional services or help if people are in a crisis or have an urgent inquiry. If you require immediate assistance or are experiencing a crisis, please seek professional medical assistance or contact a mental health crisis hotline in your area.
+              <br></br><br></br>We may collect personal information, such as your name, number, email address, and location when you interact with our chatbot. We will only use this information for the purposes of providing support and responding to your inquiries. We will not share your personal information with third parties unless we have your consent or are required by law to do so.
+  By using our website and interacting with our chatbot, you agree to the terms of this Privacy Notice and Disclaimer. If you have any questions or concerns about our privacy practices, please contact us at info@mndyrr.com
+              </p>
+          </form>
+          <div>
+                        
+            <Button size="medium" onClick = {() => giveCookieConsent(true)}>
+                Accept
+            </Button>
+            <Button size="medium" onClick = {() => giveCookieConsent(false)}>
+              Decline
+            </Button>
+          </div>
         </div>
-      </div>
+    </motion.div>
 
     )
 }
@@ -59,7 +70,7 @@ const ChatBubbles = ({init_chat_hist}) => {
         scale: {
           type: "spring",
           damping: 5,
-          stiffness: 80,
+          stiffness: 100,
           restDelta: 0.001
         }
       }}
