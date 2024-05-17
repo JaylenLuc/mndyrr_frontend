@@ -63,8 +63,8 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
 
   useEffect(() => {
     // Update the document title using the browser API
-    //animate([...stars_animation_reset, ...stars_animation, ...stars_animation_fade_out])
-    animate([...stars_opacity])
+    animate([...stars_animation_reset, ...stars_animation, ...stars_animation_fade_out])
+    //animate([...stars_opacity])
     // animate(scope.current, 
     //   {
     //       scale: 0.7,

@@ -17,10 +17,8 @@ By using our website and interacting with our chatbot, you agree to the terms of
 */
 /* <div class="buttonContainer"></div> */
 function CookiesComponent ({giveCookieConsent}) {
-  const [scope, animate] = useAnimate()
     return (
       <motion.div
-        ref={scope}
         initial={{ opacity: 0 }}
         animate={ { opacity: 1}}
         transition={{
@@ -294,23 +292,22 @@ export default function Chat() {
         <link rel="icon" href="/favicon.ico" />
 
       </Head>
+      
+      {
+        cookiepopup
+      }
+      <div>
+          <Box color="black" className= {styles.mainbox}> 
 
-      <main>
+          {
+            init_chat_hist? <ChatBubbles init_chat_hist={init_chat_hist}/> : null
+          }
+        </Box> 
+        <br></br>
+        <RealSearchBar handleClick={handleClick} searchQuery={searchQuery} setSearchQuery={setSearchQuery} btnDisabled={btnDisabled} setBtnDisabled={setBtnDisabled} />  
         
-        {
-          cookiepopup
-        }
+      </div>
 
-        <Box color="black" className= {styles.mainbox}> 
-
-        {
-          init_chat_hist? <ChatBubbles init_chat_hist={init_chat_hist}/> : null
-        }
-      </Box> 
-      <br></br>
-      <RealSearchBar handleClick={handleClick} searchQuery={searchQuery} setSearchQuery={setSearchQuery} btnDisabled={btnDisabled} setBtnDisabled={setBtnDisabled} />  
-
-      </main>
     </div>
 
   );
