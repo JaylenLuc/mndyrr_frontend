@@ -56,12 +56,12 @@ function CookiesComponent ({giveCookieConsent}) {
 }
 
 const ChatBubbles = ({init_chat_hist}) => {
-  
-    const [scope, animate] = useAnimate()
-    return Object.entries(init_chat_hist).map(entry => (
+    //iterates from latest to earliest
+    //const [scope, animate] = useAnimate()
+    const chats = Object.entries(init_chat_hist).map(entry => (
       
       <motion.div
-      ref={scope}
+     
       initial={{ opacity: 0, scale: 0.5 }}
       animate={ { opacity: 1, scale: 1}}
       transition={{
@@ -95,6 +95,9 @@ const ChatBubbles = ({init_chat_hist}) => {
         </div>
       </motion.div>
       ));
+    
+      //console.log(chats)
+      return chats
     }
 
 
@@ -127,8 +130,8 @@ export default function Chat() {
         }else{
           if (resp != "FALSE"){
             //window.localStorage.setItem("MENDY_SESSION_CHAT_HIST", resp)
-            console.log("cookie!")
-            console.log("response",resp)
+            // console.log("cookie!")
+            // console.log("response",resp)
             set_init_chat_hist(resp)
             // Object.entries(resp).map(entry => (
             //   console.log(entry[0])
