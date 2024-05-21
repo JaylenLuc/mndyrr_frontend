@@ -259,14 +259,20 @@ export default function Chat() {
   //   console.log("val: ",value)
   //   setCookie_data(value)
   // };
-  let localstore_item = window.localStorage.getItem("MENDY_CONSENT")
-  if(localstore_item == "true"){
-    setCookieComponent(null)
-    sendJWT()
-
-  }
+  const [sentToken, setSentToken] = useState(false)
 
   useEffect(() => {
+    console.log(sentToken)
+    if(typeof window !== 'undefined' && window.localStorage && sentToken ==  false ){
+      let localstore_item = window.localStorage.getItem("MENDY_CONSENT")
+      if(localstore_item == "true"){
+        setCookieComponent(null)
+        sendJWT()
+        setSentToken(true)
+        console.log("sent")
+  
+      }
+    }
     // now access your localStorage
     const handleBeforeUnload = (event) => {
       if(typeof window !== 'undefined' && window.localStorage){
@@ -286,7 +292,7 @@ export default function Chat() {
       //unmount code
       window.removeEventListener('beforeunload', handleBeforeUnload)
     }
-  },[init_chat_hist,cookiepopup]);
+  },[init_chat_hist,cookiepopup, sentToken]);
 
 
   return (
