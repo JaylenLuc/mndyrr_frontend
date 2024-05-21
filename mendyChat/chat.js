@@ -259,14 +259,14 @@ export default function Chat() {
   //   console.log("val: ",value)
   //   setCookie_data(value)
   // };
+  let localstore_item = window.localStorage.getItem("MENDY_CONSENT")
+  if(localstore_item == "true"){
+    setCookieComponent(null)
+    sendJWT()
+
+  }
 
   useEffect(() => {
-    let localstore_item = window.localStorage.getItem("MENDY_CONSENT")
-    if(localstore_item == "true"){
-      setCookieComponent(null)
-      sendJWT()
-
-    }
     // now access your localStorage
     const handleBeforeUnload = (event) => {
       if(typeof window !== 'undefined' && window.localStorage){
