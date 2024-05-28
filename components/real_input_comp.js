@@ -1,7 +1,7 @@
 import TextField from "@mui/material/TextField";
 import styles from './components.module.css'
 import Button from '@mui/material/Button';
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { animate, motion, useAnimate, useForceUpdate } from "framer-motion"
 const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setBtnDisabled}) => {
   const [scope, animate] = useAnimate()
@@ -116,8 +116,17 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
   
   }
   
+  // const handleOnSubmit = () => {
+  //   // write your function here
+  //   if (!btnDisabled){
+  //     handleClick()
+  //     setSearchQuery("")
+  //     document.getElementById("search").value = "";
+  //     setBtnDisabled(true)
+  //   }
   
-  
+  // }
+  const subButton = useRef(null);
   return (
   // onInput={(e) => {
   //   setSearchQuery(e.target.value);
@@ -130,10 +139,20 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
     >
       <textarea id = "search" className={styles.textBar}
             role="textbox" 
-            onInput={(e) => {
-            setSearchQuery(e.target.value);
+            
+            onKeyUp={(text) => {
+              console.log("text.key: ",text.key)
+              if(text.key === 'Enter'){
+                text.preventDefault()
+                subButton.current?.click()
+              }else{
+                setBtnDisabled(!text.target.value)
+                
+              }
+              setSearchQuery(text.target.value);
+              
             }}
-            onChange={(text) => setBtnDisabled(!text.target.value)}
+
             placeholder="Ask Mendy anything! What's on your mind?"
             
             >
@@ -155,7 +174,7 @@ const RealSearchBar = ({handleClick,searchQuery,setSearchQuery,btnDisabled, setB
           }
         }}
         >
-          <Button className = {styles.textButton} onTap variant="contained" disabled={btnDisabled} onClick={() => {
+          <Button  ref={subButton} className = {styles.textButton} onTap variant="contained" disabled={btnDisabled} onClick={() => {
                 if (!btnDisabled){
                   handleClick()
                   setSearchQuery("")

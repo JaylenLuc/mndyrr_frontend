@@ -3,7 +3,6 @@
 .searchbar{
     width: 100%;
     position: relative;
-    bottom: 0; 
     z-index: inherit;
 
 
@@ -40,7 +39,7 @@
 }
 .textButton{
     left: 25px;
-    border-radius: 25px;
+    border-radius: 20px;
     background: linear-gradient(-135deg, #FAC898, #eddfff, #ffdbf7, #ffdbe5, #ffdbf7, #eddfff);
     background-size: 150% 150%;
     animation: gradient 3s ease infinite;

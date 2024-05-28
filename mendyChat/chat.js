@@ -53,46 +53,76 @@ function CookiesComponent ({giveCookieConsent}) {
     )
 }
 
-const ChatBubbles = ({init_chat_hist}) => {
+const ChatBubbles = ({init_chat_hist, setFirstLoad , firstLoad}) => {
     //iterates from latest to earliest
-    //const [scope, animate] = useAnimate()
-    const chats = Object.entries(init_chat_hist).map(entry => (
-      
-      <motion.div
-     
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={ { opacity: 1, scale: 1}}
-      transition={{
-        duration: 1.2,
-        ease: [0, 1, 0.3, 1.01],
-        scale: {
-          type: "spring",
-          damping: 5,
-          stiffness: 100,
-          restDelta: 0.001
-        }
-      }}
-       >
-        <div key={entry[0]}>
-          <span className = {styles.date}>{entry[0].split("-")[1]}/{entry[0].split("-")[2]}/{entry[0].split("-")[0]} {entry[0].split("-")[3].length == 1 ? "0" + entry[0].split("-")[3] : entry[0].split("-")[3]} : {entry[0].split("-")[4].length == 1 ? "0" + entry[0].split("-")[4] : entry[0].split("-")[4]}</span>
-          <br></br>
-          <div className={styles.humanChat}>
-            <strong>You</strong>
-            <br></br>
-            {entry[1]['HumanMessage']}
-          </div>
+    const [firstRender, setFirst] = useState(true)
+    let first = true
+    const chats = Object.entries(init_chat_hist).map(entry => {
+      // if (first ){
+      //   first = false
+        return(
+          <motion.div
+          key={entry[0]}
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={ { opacity: 1, scale: 1}}
+          transition={{
+            duration: 1.2,
+            ease: [0, 1, 0.3, 1.01],
+            scale: {
+              type: "spring",
+              damping: 5,
+              stiffness: 100,
+              restDelta: 0.001
+            }
+          }}
+          >
+            <div>
+              <span className = {styles.date}>{entry[0].split("-")[1]}/{entry[0].split("-")[2]}/{entry[0].split("-")[0]} {entry[0].split("-")[3].length == 1 ? "0" + entry[0].split("-")[3] : entry[0].split("-")[3]} : {entry[0].split("-")[4].length == 1 ? "0" + entry[0].split("-")[4] : entry[0].split("-")[4]}</span>
+              <br></br>
+              <div className={styles.humanChat}>
+                <strong>You</strong>
+                <br></br>
+                {entry[1]['HumanMessage']}
+              </div>
 
-          <div className={styles.aiChat}>
-            <br></br>
-            <br></br>
-            <strong>Mendy</strong>
-            <br></br>
-            {entry[1]['AIMessage']}
-          </div>
-          <br></br>
-        </div>
-      </motion.div>
-      ));
+              <div className={styles.aiChat}>
+                <br></br>
+                <br></br>
+                <strong>Mendy</strong>
+                <br></br>
+                {entry[1]['AIMessage']}
+              </div>
+              <br></br>
+            </div>
+          </motion.div>
+        
+        )
+      // }else{
+      //   return (
+      //     <div>
+      //     <div key={entry[0]}>
+      //     <span className = {styles.date}>{entry[0].split("-")[1]}/{entry[0].split("-")[2]}/{entry[0].split("-")[0]} {entry[0].split("-")[3].length == 1 ? "0" + entry[0].split("-")[3] : entry[0].split("-")[3]} : {entry[0].split("-")[4].length == 1 ? "0" + entry[0].split("-")[4] : entry[0].split("-")[4]}</span>
+      //     <br></br>
+      //     <div className={styles.humanChat}>
+      //       <strong>You</strong>
+      //       <br></br>
+      //       {entry[1]['HumanMessage']}
+      //     </div>
+
+      //     <div className={styles.aiChat}>
+      //       <br></br>
+      //       <br></br>
+      //       <strong>Mendy</strong>
+      //       <br></br>
+      //       {entry[1]['AIMessage']}
+      //     </div>
+      //     <br></br>
+      //   </div>
+      //   </div>
+      //   )
+      // }
+      }
+      );
     
       //console.log(chats)
       return chats
@@ -100,7 +130,7 @@ const ChatBubbles = ({init_chat_hist}) => {
 
 
 export default function Chat() {
-
+  const [firstLoad, setFirstLoad] = useState(true)
   function sendJWT(){
     if(typeof window !== 'undefined' && window.localStorage ){
       // getCookies();
@@ -291,8 +321,9 @@ export default function Chat() {
     return () => {
       //unmount code
       window.removeEventListener('beforeunload', handleBeforeUnload)
+      // setFirstLoad(false)
     }
-  },[init_chat_hist,cookiepopup, sentToken]);
+  },[sentToken, firstLoad]);
 
 
   return (
@@ -312,7 +343,7 @@ export default function Chat() {
           <Box color="black" className= {styles.mainbox}> 
 
           {
-            init_chat_hist? <ChatBubbles init_chat_hist={init_chat_hist}/> : null
+            init_chat_hist? <ChatBubbles firstLoad={firstLoad}setFirstLoad={setFirstLoad} init_chat_hist={init_chat_hist}/> : null
           }
         </Box> 
         <br></br>
