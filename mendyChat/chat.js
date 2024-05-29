@@ -217,10 +217,6 @@ export default function Chat() {
       .then(res => {
         //console.log(res['data']['response'])
         let resp = res['data']['response'] //[currentTime, {"AIMessage" : resp , "HumanMessage" : query}]
-        if (value == "false"){
-          
-          console.log(window.localStorage.getItem("MENDY_SESSION"))
-        }else{
           //window.localStorage.setItem("MENDY_SESSION_CHAT_HIST", resp)
           console.log("on handle click:", resp)
 
@@ -236,9 +232,10 @@ export default function Chat() {
           
           set_init_chat_hist(newChats)
 
-        }
+        
       })    
       .catch(err => { 
+        console.log("err")
         console.log(err) 
       })
 
